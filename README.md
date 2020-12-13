@@ -1,2 +1,2 @@
 # School-Homework
-My school homework
+This is a repo that I use to store my coding related homework
