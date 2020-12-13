@@ -1,0 +1,24 @@
+typedef unsigned long size_t;
+
+size_t mystrlen(char*s);
+size_t mystrnlen(char*s, size_t maxlenght);
+void * mymemchr(void  *str, int character, size_t maxlenght);
+int mymemcmp (const void* str1, const void* str2, size_t maxmem);
+void *mymemcpy(void *string_to, const void *string_from, size_t maxmem);
+void *mymemset(void *str, int character, size_t n);
+char* mystrcat(char* string_to, char* string_from);
+char* mystrncat(char* string_to, char* string_from, size_t n);
+char *mystrchr (char* str, int c);
+char *mystrrchr (char* str, int c);
+int mystrcmp(char *str1, char* str2);
+int mystrncmp(char *str1, char* str2, size_t n);
+size_t mystrspn (char *str, char* characters);
+size_t mystrcspn(char*str1, char* chars);
+char *mystrstr(char*str, char*baby_str);
+char* mystrpbrk(char*str, char*chars);
+char *mystrdup(char*string_to);
+char *mystrndup(char*string_to, size_t bytes);
+char* mystrcpy(char*string_to, char*string_from);
+char *mystrncpy(char *string_to, char*string_from, size_t n);
+char *strtoupper(char *str);
+char *strtolower(char *str);

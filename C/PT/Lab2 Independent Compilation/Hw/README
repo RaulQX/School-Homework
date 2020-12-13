@@ -1,0 +1,341 @@
+MYSTRLEN
+
+NAME
+       mystrlen - calculate the length of a string
+
+SYNOPSIS
+       #include <cstrings.h>
+
+       size_t mystrlen(char *s);
+
+DESCRIPTION
+       The mystrlen() function calculates the length of the string pointed to by s, excluding the terminating null byte ('\0').
+
+RETURN VALUE
+       The mystrlen() function returns the number of bytes in the string pointed to by s.
+
+########################################################################################################################################
+
+MYSTRNLEN                                  
+
+NAME
+       mystrnlen - determine the length of a fixed-size string
+
+SYNOPSIS
+       #include <cstrings.h>
+
+       size_t mystrnlen(char *s, size_t maxlenght);
+
+DESCRIPTION
+       The  mystrnlen()  function returns the number of bytes in the string pointed to by s, excluding the terminating null byte
+       ('\0'), but at most maxlenght.  In doing this, mystrnlen() looks only at the first maxlenght characters in the  string  pointed
+       to by s and never beyond s+maxlenght.
+
+RETURN VALUE
+       The mystrnlen() function returns strlen(s), if that is less than maxlenght, or maxlenght if there is no null terminating ('\0')
+       among the first maxlenght characters pointed to by s.
+
+########################################################################################################################################
+
+MYMEMCHR                                       
+
+NAME
+       mymemchr - scan memory for a character
+
+SYNOPSIS
+       #include <cstrings.h>
+
+       void *mymemchr(void *str, int character, size_t maxmem);
+
+DESCRIPTION
+       The mymemchr() function scans the initial maxmem bytes of the memory area pointed to by str for the first instance of character.  Both
+       character and the bytes of the memory area pointed to by str are interpreted as unsigned char.
+
+RETURN VALUE
+       The mymemchr() function return a pointer to the matching byte or NULL if the character does not  occur  in
+       the given memory area.
+
+########################################################################################################################################
+
+MYMEMCMP                                      
+
+NAME
+       mymemcmp - compare memory areas
+
+SYNOPSIS
+       #include <cstrings.h>
+
+	   int mymemcmp (const void* str1, const void* str2, size_t maxmem);
+
+DESCRIPTION
+       The mymemcmp() function compares the first maxmem bytes (each interpreted as unsigned char) of the memory areas str1 and str2.
+
+RETURN VALUE
+       The mymemcmp() function returns an integer less than, equal to, or greater than zero if the first maxmem bytes of str1 is found,
+       respectively, to be less than, to match, or be greater than the first max bytes of str2.
+
+       For a nonzero return value, the sign is determined by the sign of the difference between the first pair of  bytes  (in‐
+       terpreted as unsigned char) that differ in str1 and str2.
+
+       If maxmem is zero, the return value is zero.
+
+########################################################################################################################################
+
+MYMEMCPY                                       
+
+NAME
+       mymemcpy - copy memory area
+
+SYNOPSIS
+       #include <cstrings.h>
+
+void *mymemcpy(void *string_to, const void *string_from, size_t maxmem);
+
+DESCRIPTION
+       The mymemcpy() function copies maxmem bytes from memory area string_from to memory area string_to.  The memory areas must not overlap. Use
+       memmove (from <string.h>) or mymemmove (to be implemented in future updates) if the memory areas do overlap.
+
+RETURN VALUE
+       The mymemcpy() function returns a pointer to dest.
+
+########################################################################################################################################
+
+MYMEMSET                                        
+
+NAME
+       mymemset - fill memory with a constant byte
+
+SYNOPSIS
+       #include <cstrings.h>
+
+       void *mymemset(void *str, int character, size_t n);
+
+DESCRIPTION
+       The mymemset() function fills the first n bytes of the memory area pointed to by s with the constant byte character.
+
+RETURN VALUE
+       The mymemset() function returns a pointer to the memory area str.
+
+########################################################################################################################################
+
+MYSTRCAT & MYSTRNCAT    
+
+NAME
+       mystrcat, mystrncat - concatenate two strings
+
+SYNOPSIS
+       #include <cstrings.h>
+
+       char *strcat(char *string_to, char *string_from);
+
+       char *strncat(char *string_to, char *string_from, size_t n);
+
+DESCRIPTION
+       The  strcat()  function  appends the string_from string to the string_to string, overwriting the terminating null byte ('\0') at the
+       end of string_to, and then adds a terminating null byte.  The strings may not overlap, and the string_to string must have  enough
+       space  for  the result.  If string_to is not large enough, program behavior is unpredictable; buffer overruns are a favorite
+       avenue for attacking secure programs.
+
+       The strncat() function is similar, except that
+
+       *  it will use at most n bytes from string_from; and
+
+       *  string_from does not need to be null-terminated if it contains n or more bytes.
+
+       As with strcat(), the resulting string in string_to is always null-terminated.
+
+       If string_from contains n or more bytes, strncat() writes n+1 bytes to string_to (n  from  string_from  plus  the  terminating  null  byte).
+       Therefore, the size of string_to must be at least mystrlen(string_to)+n+1.
+
+########################################################################################################################################
+
+MYSTRCHR                                         
+
+NAME
+       mystrchr, mystrrchr - locate character in string
+
+SYNOPSIS
+       #include <cstrings.h>
+
+       char *strchr(char *str, int c);
+
+       char *strrchr( char *str, int c);
+
+     
+DESCRIPTION
+       The mystrchr() function returns a pointer to the first occurrence of the character c in the string str.
+
+       The mystrrchr() function returns a pointer to the last occurrence of the character c in the string str.
+
+       Here "character" means "byte"; these functions do not work with wide or multibyte characters.
+
+########################################################################################################################################
+
+MYSTRCMP & MYSTRNCMP                                         
+
+NAME
+       mystrcmp, mystrncmp - compare two strings
+
+SYNOPSIS
+       #include <cstrings.h>
+
+		int mystrcmp(char *str1, char* str2);
+		
+		int mystrncmp(char *str1, char* str2, size_t n);
+
+DESCRIPTION
+       The  mystrcmp()  function  compares  the two strings str1 and str2.  The locale is not taken into account (for a locale-aware
+       comparison, see strcoll (from <string.h>)).  It returns an integer less than, equal to, or greater than zero if str1 is  found,  respec‐
+       tively, to be less than, to match, or be greater than str2.
+
+       The mystrncmp() function is similar, except it compares only the first (at most) n bytes of str1 and str2.
+
+RETURN VALUE
+       The  mystrcmp() and mystrncmp() functions return an integer less than, equal to, or greater than zero if str1 (or the first n
+       bytes thereof) is found, respectively, to be less than, to match, or be greater than str2.
+
+########################################################################################################################################
+
+MYSTRSPN & MYSTRCSPN
+
+NAME
+       mystrspn, mystrcspn - get length of a prefix substring
+
+SYNOPSIS
+       #include <cstrings.h>
+
+       size_t mystrspn(char *str, char *characters);
+
+       size_t mystrcspn(char *str1, char *chars);
+
+DESCRIPTION
+       The  mystrspn() function calculates the length (in bytes) of the initial segment of s which consists entirely of bytes in
+       characters.
+
+       The mystrcspn() function calculates the length of the initial segment of s which consists entirely of bytes  not  in  chars.
+
+RETURN VALUE
+       The mystrspn() function returns the number of bytes in the initial segment of s which consist only of bytes from characters.
+
+       The mystrcspn() function returns the number of bytes in the initial segment of s which are not in the string chars.
+
+########################################################################################################################################
+
+MYSTRSTR                                      
+
+NAME
+       mystrstr - locate a substring
+
+SYNOPSIS
+       #include <cstrings.h>
+
+	   char *mystrstr(char*str, char*baby_str);
+
+DESCRIPTION
+       The  mystrstr() function finds the first occurrence of the substring baby_str in the string str. The terminating null
+       bytes ('\0') are not compared.
+
+RETURN VALUE
+       These functions return a pointer to the beginning of the located substring, or NULL if the substring is not found.
+
+########################################################################################################################################
+
+MYSTRPBRK                                       
+
+NAME
+       mystrpbrk - search a string for any of a set of bytes
+
+SYNOPSIS
+       #include <cstrings.h>
+
+       char *mystrpbrk(char *str, char *chars);
+
+DESCRIPTION
+       The mystrpbrk() function locates the first occurrence in the string str of any of the bytes in the string chars.
+
+RETURN VALUE
+       The  mystrpbrk()  function returns a pointer to the byte in str that matches one of the bytes in chars, or NULL if no such
+       byte is found.
+
+########################################################################################################################################
+
+MYSTRDUP & MYSTRNDUP 
+
+NAME
+       mystrdup, mystrndup - duplicate a string
+
+SYNOPSIS
+       #include <cstrings.h>
+
+       char *mystrdup(char *string_to);
+
+       char *mystrndup(char *string_to, size_t bytes);
+
+DESCRIPTION
+       The  mystrdup()  function  returns  a  pointer  to a new string which is a duplicate of the string string_to. Memory for the new
+       string is obtained with malloc, and can be freed with free.
+
+       The mystrndup() function is similar, but copies at most as many bytes as specified in the variable bytes. If s is longer than n, 
+       only n bytes are copied, and a terminating null byte ('\0') is added.
+
+RETURN VALUE
+       On success, the mystrdup() function returns a pointer to the duplicated string.  It returns NULL if  insufficient  memory
+       was available.
+
+########################################################################################################################################
+
+MYSTRCPY & MYSTRNCPY
+
+NAME
+       mystrcpy, mystrncpy - copy a string
+
+SYNOPSIS
+       #include <cstrings.h>
+
+	   char* mystrcpy(char*string_to, char*string_from);
+
+	   char *mystrncpy(char *string_to, char*string_from, size_t n);
+
+DESCRIPTION
+       The  mystrcpy()  function  copies the string pointed to by string_from, including the terminating null byte ('\0'), to the buffer
+       pointed to by string_to.  The strings may not overlap, and the destination string string_to must be large enough to  receive  the
+       copy.  Beware of buffer overruns!
+
+       The  mystrncpy()  function  is similar, except that at most n bytes of string_from are copied.  Warning: If there is no null byte
+       among the first n bytes of string_from, the string placed in string_to will not be null-terminated.
+
+       If the length of string_from is less than n, mystrncpy() writes additional null bytes to string_to to ensure that a total of  n  bytes
+       are written.
+RETURN VALUE
+       The mystrcpy() and mystrncpy() functions return a pointer to the destination string string_to.
+
+########################################################################################################################################
+
+STRTOUPPER & STRTOLOWER                                         
+
+NAME
+       strtoupper, strtolower - convert a string to uppercase or lowercase
+
+SYNOPSIS
+       #include <cstrings.h>
+
+       char *strtoupper(char *str);
+
+	   char *strtolower(char *str);
+
+DESCRIPTION
+       These functions convert lowercase strings to uppercase, and vice versa.
+
+       If the characters in the string str are lowercase letters, strtoupper() returns its uppercase equivalent, 
+       if an uppercase representation exists in the current locale.  Otherwise, it returns the string str.
+
+       If the characters in the string str are uppercase letters, strtolower() returns its lowercase equivalent,
+       if a lowercase representation exists in the current locale.  Otherwise, it returns the string str.
+
+       If c is neither an unsigned char value nor EOF, the behavior of these functions is undefined.
+
+
+RETURN VALUE
+       The functions return a pointer to the modified (or not) string str.
+
+########################################################################################################################################
